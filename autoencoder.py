@@ -17,10 +17,9 @@ import yfinance as yf
 from pypfopt import risk_models
 from pypfopt import expected_returns
 
-from get_all_tickers import get_tickers as gt
-
-list_of_tickers = gt.get_tickers()
-print(list_of_tickers)
+#tickers = pd.read_csv('tickers.csv')
+#symbols = list(tickers.values.flatten())[100:164]
+#print(symbols)
 
 # Import stock data
 symbols = [
@@ -98,9 +97,9 @@ simple_autoencoder = SimpleAutoencoder(latent_dimensions, input_data_shape)
 simple_autoencoder.compile(optimizer='adam', loss=losses.MeanSquaredError())
 
 simple_autoencoder.fit(x_train, x_train,
-				epochs=100,
-				shuffle=True,
-				validation_data=(x_test, x_test))
+ 				epochs=100,
+ 				shuffle=True,
+ 				validation_data=(x_test, x_test))
 
 encoded_imgs = simple_autoencoder.encoder(x_test).numpy()
 decoded_imgs = simple_autoencoder.decoder(encoded_imgs).numpy()
@@ -112,7 +111,7 @@ for i in range(n):
 	plt.plot(x_test[i])
 	plt.title("original")
 	#plt.gray()
-
+	
 	# display reconstruction
 	ax = plt.subplot(2, n, i + 1 + n)
 	plt.plot(decoded_imgs[i])
